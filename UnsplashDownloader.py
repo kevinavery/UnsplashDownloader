@@ -10,7 +10,7 @@ url = "";
 content = "";
 pattern = "<a href=\"/photos/(.*?)\"";
 
-directory = os.path.realpath(os.getcwd() + "\\pictures\\");
+directory = os.path.expanduser("~/Pictures/unsplash/")
 
 page  = 1;
 count = 0;
@@ -24,7 +24,7 @@ while (not isEnd):
     content = urllib.urlopen(url).read();
     for s in re.findall(pattern,content):
         pic = "http://unsplash.com/photos/" + s + "/download";
-        filename = directory+ "\\" + s + ".jpeg";
+        filename = directory+ "/" + s + ".jpeg";
         logger.info("Loading:\t %s",s)
         if(not os.path.exists(filename)):
             urllib.urlretrieve(pic,filename);
